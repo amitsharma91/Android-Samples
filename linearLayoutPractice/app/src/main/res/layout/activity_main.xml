@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F50057"
+    android:padding="15dp">
+
+    <TextView
+        android:text="This is First Line "
+        android:textSize="26sp"
+        android:background="#4CAF50"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:text="This is Second Line"
+        android:textSize="26sp"
+        android:background="#CDDC39"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:text="This is Third Line"
+        android:textSize="26sp"
+        android:background="#00BCD4"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>
