@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="tk.developeramit.textviewpractice.MainActivity">
+
+    <TextView
+        android:text="About Android Studio"
+        android:textSize="35sp"
+        android:background="#536DEF"
+        android:textColor="#EEFF41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:id="@+id/heading" />
+
+    <TextView
+        android:text="It is an IDE by IntelliJ. It is used for Designing and Developing Android Applications, Quickly and Easily. Also it is good for Beginers to start with"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="#B3E5FC"
+        android:textColor="#006064"
+        android:textAlignment="gravity"
+        android:padding="3px"
+        android:layout_below="@+id/heading"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp" />
+</RelativeLayout>
