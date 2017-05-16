@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+   <ImageView
+       android:src="@drawable/avatar"
+       android:scaleType="centerCrop"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:id="@+id/avtar_image"/>
+
+    <TextView
+        android:text="AVATAR "
+        android:textSize="34sp"
+        android:layout_toRightOf="@+id/avtar_image"
+        android:id="@+id/avtar_header"
+        android:paddingLeft="8dp"
+        android:paddingTop="2dp"
+        android:background="#90CAF9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="size: 2.4 MB"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/avtar_image"
+        android:layout_below="@+id/avtar_header"
+        android:id="@+id/avtar_size"
+        android:paddingLeft="9dp"
+        android:paddingTop="9dp"
+        android:background="#90CAF9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="source: www.google.com"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/avtar_image"
+        android:layout_below="@id/avtar_size"
+        android:paddingLeft="8dp"
+        android:background="#90CAF9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/avtar_source"/>
+
+
+    <ImageView
+        android:src="@drawable/starcraft"
+        android:scaleType="centerCrop"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/avtar_image"
+        android:id="@+id/starcraft_image"/>
+
+
+    <TextView
+        android:text="STARCRAFT "
+        android:textSize="34sp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/starcraft_image"
+        android:id="@+id/starcraft_header"
+        android:layout_below="@id/avtar_source"
+        android:paddingLeft="8dp"
+        android:paddingTop="2dp"
+        android:background="#90CAF9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="size: 9.6 MB"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/starcraft_image"
+        android:layout_below="@+id/starcraft_header"
+        android:id="@+id/starcraft_size"
+        android:paddingLeft="8dp"
+        android:paddingTop="10dp"
+        android:background="#90CAF9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="source: www.yahoo.com"
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/starcraft_image"
+        android:layout_below="@id/starcraft_size"
+        android:paddingLeft="8dp"
+        android:background="#90CAF9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/starcraft_source"/>
+
+
+</RelativeLayout>
