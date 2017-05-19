@@ -1,42 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF5252"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:fillViewport="true"
     tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="QUANTITY:"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <!-- Decrement Button -->
-        <Button
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:onClick="decrementButton"
-            android:text="-"
-            android:textSize="16sp" />
-        <!-- Increment Button -->
+        android:layout_height="match_parent"
+        android:background="#FF5252"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
+        <EditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
 
-        <!-- For Quantity -->
         <TextView
-            android:id="@+id/quantity_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:text="TOPPINGS:"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/cream_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getCream"
+            android:paddingLeft="24dp"
+            android:text="Whipped Cream"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/chocolate_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getChocolate"
+            android:paddingLeft="24dp"
+            android:text="Chocolate"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="QUANTITY:"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- Decrement Button -->
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:onClick="decrementButton"
+                android:text="-"
+                android:textSize="16sp" />
+            <!-- Increment Button -->
+
+
+            <!-- For Quantity -->
+            <TextView
+                android:id="@+id/quantity_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:onClick="incrementButton"
+                android:text="+"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="TOTAL COST:"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <!-- For Cost -->
+        <TextView
+            android:id="@+id/cost_text_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="0"
@@ -44,38 +111,17 @@
             android:textSize="16sp" />
 
         <Button
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:onClick="incrementButton"
-            android:text="+"
-            android:textSize="16sp" />
+            android:onClick="setOrder"
+            android:text="ORDER" />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TOTAL COST:"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
 
-    <!-- For Cost -->
-    <TextView
-        android:id="@+id/cost_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="0"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+</ScrollView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="setOrder"
-        android:text="ORDER" />
 
-</LinearLayout>
+
+
