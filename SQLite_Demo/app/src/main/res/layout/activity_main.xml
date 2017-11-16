@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="tk.developeramit.sqlite_demo.MainActivity">
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="Name" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:hint="Username" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Password" />
+
+    <Button
+        android:id="@+id/insert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="onClickInsert"
+        android:text="Insert Data" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <Button
+        android:id="@+id/showAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickShowAll"
+        android:layout_marginBottom="16dp"
+        android:text="Show All Data" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <EditText
+        android:id="@+id/studentId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Id to Update Record"
+        />
+
+    <Button
+        android:id="@+id/update1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickUpdateRecord"
+        android:layout_marginBottom="16dp"
+        android:text="Update Details" />
+</LinearLayout>
