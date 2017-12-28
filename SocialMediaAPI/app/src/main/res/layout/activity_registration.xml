@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="tk.developeramit.socialmediaapi.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/name_signup_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white">
+
+            <EditText
+                android:id="@+id/name_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/full_name"
+                android:imeActionLabel="Next"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:inputType="textCapWords"
+                android:padding="8dp"
+                android:textColor="@color/white" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email_signup_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white">
+
+            <EditText
+                android:id="@+id/email_signup"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/email_hint"
+                android:imeActionLabel="Next"
+                android:inputType="textEmailAddress"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/white" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password_signup_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white">
+
+            <EditText
+                android:id="@+id/passowrd_signup"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginBottom="24dp"
+                android:hint="@string/password_hint"
+                android:imeActionLabel="Next"
+                android:inputType="textPassword"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/white" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@color/backgroundColorDark"
+            android:onClick="onClickRegistration"
+            android:text="@string/create_acc"
+            android:textColor="@color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:layout_marginBottom="24dp"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/googlelogo"
+            android:padding="4dp"
+            android:text="@string/google_sign_in"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:onClick="onClickAlready"
+            android:text="@string/already_acc"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            tools:ignore="OnClick" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/progress_layout_signup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <ProgressBar
+            android:id="@+id/login_progress_signup"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:indeterminateTintMode="src_atop" />
+
+    </RelativeLayout>
+</FrameLayout>

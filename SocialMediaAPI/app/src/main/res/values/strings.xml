@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SocialMediaAPI</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="Login_button">Login</string>
+    <string name="signup_button">Not a member? Sign up now.</string>
+    <string name="full_name">Full Name</string>
+    <string name="create_acc">Create Account</string>
+    <string name="already_acc">Already registered? Login.</string>
+    <string name="google_sign_in">Sign in with Google</string>
+</resources>
