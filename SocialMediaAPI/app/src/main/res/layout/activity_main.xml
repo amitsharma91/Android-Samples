@@ -31,30 +31,30 @@
 
             <TextView
                 android:id="@+id/profile_name"
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:padding="4dp"
                 android:text="Full Name od User"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/profile_email"
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="email address of user"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <Button
                 android:id="@+id/profile_logout"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
-                android:text="Logout Account"
-                android:onClick="onClickSignOut"/>
+                android:onClick="onClickSignOut"
+                android:text="Logout Account" />
 
         </LinearLayout>
 
@@ -67,6 +67,14 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:orientation="vertical"
         android:padding="12dp">
+        
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/launcher"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            />
 
         <EditText
             android:id="@+id/email"
@@ -114,9 +122,7 @@
             android:id="@+id/google_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:onClick="onClickSignInGoogle"
-            />
+            android:layout_marginTop="24dp" />
 
     </LinearLayout>
 

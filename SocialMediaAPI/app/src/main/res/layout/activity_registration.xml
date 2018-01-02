@@ -15,6 +15,14 @@
         android:orientation="vertical"
         android:padding="12dp">
 
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/launcher"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            />
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/name_signup_input_layout"
             android:layout_width="match_parent"

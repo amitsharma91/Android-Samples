@@ -1,12 +1,13 @@
 package tk.developeramit.socialmediaapi;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -79,13 +80,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this, "Into Method", Toast.LENGTH_SHORT).show();
-                //create intent
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                //Toast.makeText(MainActivity.this, "INtent Created", Toast.LENGTH_SHORT).show();
-                //start activity for result
-                startActivityForResult(signInIntent, REQUEST_CODE);
-                //Toast.makeText(MainActivity.this, "Waiting for Inetnt", Toast.LENGTH_SHORT).show();
+
+                if (checkConnection()) {
+                    //create intent
+                    Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+
+                    //start activity for result
+                    startActivityForResult(signInIntent, REQUEST_CODE);
+                } else {
+                    Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -98,33 +102,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     //For Login Button
     public void onLogin(View view) {
-        String email = emailText.getText().toString();
-        String password = passwordText.getText().toString();
+        if (checkConnection()) {
+            String email = emailText.getText().toString();
+            String password = passwordText.getText().toString();
 
+            if (email.trim().equalsIgnoreCase("")) {
+                emailText.setError("Email Cannot be Empty!");
+                return;
+            }
 
-        if (email.trim().equalsIgnoreCase("")) {
-            emailText.setError("Email Cannot be Empty!");
-            return;
+            if (password.trim().equalsIgnoreCase("")) {
+                passwordText.setError("Password Cannot be Empty!");
+                return;
+            }
+
+            BackgroundWorker backgroundWorker = new BackgroundWorker(this, relativeLayout);
+            backgroundWorker.execute("login_user", email, password);
+        } else {
+            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_LONG).show();
         }
-
-        if (password.trim().equalsIgnoreCase("")) {
-            passwordText.setError("Password Cannot be Empty!");
-            return;
-        }
-
-        //Toast.makeText(this, email + " : " + password, Toast.LENGTH_SHORT).show();
-
-        BackgroundWorker backgroundWorker = new BackgroundWorker(this, relativeLayout);
-        backgroundWorker.execute("login_user", email, password);
     }//End of Login Button Code
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        //Start Progress
-        relativeLayout.setVisibility(View.VISIBLE);
 
         //Accessing the Result
         GoogleSignInResult googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -150,15 +152,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             profileInfo.setVisibility(View.GONE);//visible profile Information
             primaryView.setVisibility(View.VISIBLE);//Hide Primary View
         }
-
-        //stop Progress
-        relativeLayout.setVisibility(View.GONE);
     }
-
 
     //For Sign Out of Google Account
     public void onClickSignOut(View view) {
-        relativeLayout.setVisibility(View.VISIBLE);
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {
@@ -167,11 +164,29 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 primaryView.setVisibility(View.VISIBLE);//Hide Primary View
             }
         });
-        relativeLayout.setVisibility(View.GONE);
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Toast.makeText(this, "Some Problem in Connection.", Toast.LENGTH_SHORT).show();
+    }
+
+
+    //Check Connection
+    public boolean checkConnection() {
+        boolean wifi = false, mobileData = false;
+
+        ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] networkInfos = connectionManager.getAllNetworkInfo();
+
+        for (NetworkInfo ni : networkInfos) {
+
+            if (ni.getTypeName().equalsIgnoreCase("WIFI") && ni.isConnected())
+                wifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE") && ni.isConnected())
+                mobileData = true;
+        }
+
+        return (wifi || mobileData);
     }
 }
