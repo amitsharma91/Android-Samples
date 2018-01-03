@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JSON_Parsing</string>
+    <string name="title_home">Data From Source using JSON parsing</string>
+    <string name="sample">xxxx-xxxx-xxxx</string>
+</resources>
