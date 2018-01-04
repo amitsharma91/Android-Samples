@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">JSON_Parsing</string>
-    <string name="title_home">Data From Source using JSON parsing</string>
+    <string name="title_home">JSON parsing - source</string>
     <string name="sample">xxxx-xxxx-xxxx</string>
+    <string name="json_string">JSON String</string>
+    <string name="title_data">JSON parsing - PHP</string>
 </resources>

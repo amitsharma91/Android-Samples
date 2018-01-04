@@ -1,12 +1,18 @@
 package tk.developeramit.json_parsing;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -20,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView lv;
     private String jsonContact;
-    AlertDialog.Builder alertBuilder;
-    ArrayList<HashMap<String, String>> contactList;
-    ListAdapter adapter;
+    private AlertDialog.Builder alertBuilder;
+    private ArrayList<HashMap<String, String>> contactList;
+    private ListAdapter adapter;
+    private RelativeLayout relativeLayout;
+    private String jsonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +40,27 @@ public class MainActivity extends AppCompatActivity {
         jsonContact = "https://api.androidhive.info/contacts/";
         lv = (ListView) findViewById(R.id.listView);
         contactList = new ArrayList<>();
-
+        relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout_home);
 
         new BackgroundHelperForMainActivity().execute();
+    }
+
+    /**
+     * To Show JSON STRING
+     */
+
+    public void onClickViewHome(View view) {
+        alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertBuilder.setCancelable(true);
+        alertBuilder.setTitle("JSON String");
+        alertBuilder.setMessage(jsonString);
+        alertBuilder.show();
     }
 
     /**
      * Class for JSON Thread
      */
     private class BackgroundHelperForMainActivity extends AsyncTask<Void, Void, Void> {
-
-        public String jsonString = "";
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -75,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         HashMap<String, String> contactItem = new HashMap<>();
-                        contactItem.put("id",id);
+                        contactItem.put("id", id);
                         contactItem.put("name", name);
                         contactItem.put("email", email);
                         contactItem.put("mobile", mobile);
@@ -96,23 +114,38 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            alertBuilder = new AlertDialog.Builder(MainActivity.this);
-            alertBuilder.setCancelable(true);
-            alertBuilder.setTitle("JSON String");
+            relativeLayout.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            alertBuilder.setMessage(jsonString);
-            alertBuilder.show();
-
             adapter = new SimpleAdapter(MainActivity.this, contactList, R.layout.my_list, new String[]{"name", "email", "mobile"}, new int[]{R.id.name, R.id.email, R.id.contact});
-
             lv.setAdapter(adapter);
+
+            relativeLayout.setVisibility(View.GONE);
         }
 
         @Override
         protected void onProgressUpdate(Void... values) {
         }
+    }//end of BackgroundHelperForMainActivity
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.view_data: {
+                Intent viewData = new Intent(this, view_data.class);
+                startActivity(viewData);
+            }
+            break;
+        }
+        return true;
     }
 }
