@@ -1,10 +1,12 @@
 package tk.developeramit.json_parsing;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -16,12 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -43,9 +39,12 @@ public class view_data extends AppCompatActivity {
         studentList = new ArrayList<>();
         relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout_view_data);
 
-        phpURL = "http://192.168.0.2/MyProjects/Android_WS/sthudentJSON.php";
+        phpURL = "http://www.developeramit.tk/sthudentJSON.php";
 
-        new BackgroundWorkerForViewData().execute();
+        if (checkConnection()) {
+            new BackgroundWorkerForViewData().execute();
+        } else
+            Toast.makeText(view_data.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -69,7 +68,10 @@ public class view_data extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            jsonString = getStringFromURL(phpURL);
+            HandleJSON handleJSON = new HandleJSON();
+
+            //get JSON in String Format
+            jsonString = handleJSON.getJSONFromUrl(phpURL);
 
             if (jsonString != null) {
                 try {
@@ -118,33 +120,25 @@ public class view_data extends AppCompatActivity {
             relativeLayout.setVisibility(View.GONE);
         }
 
+    }
 
-        //Method to get json string from php
-        public String getStringFromURL(String resourceURL) {
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = "";
-            InputStream inputStream = null;
-            try {
-                URL url = new URL(resourceURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                inputStream = httpURLConnection.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+    /**
+     * Check Network Connection
+     *
+     * @return boolean
+     */
+    public boolean checkConnection() {
+        boolean wifi = false, mobile = false;
 
-                while ((line = br.readLine()) != null) {
-                    stringBuilder.append(line + "\n");
-                }
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
 
-            } catch (Exception e) {
-                Log.e("" + this.getClass().getName(), "" + e);
-            } finally {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            return stringBuilder.toString();
+        for (NetworkInfo ni : networkInfos) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI") && ni.isConnected())
+                wifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE") && ni.isConnected())
+                mobile = true;
         }
+        return (wifi || mobile);
     }
 }

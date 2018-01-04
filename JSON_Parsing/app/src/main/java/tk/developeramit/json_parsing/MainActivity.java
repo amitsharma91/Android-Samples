@@ -1,10 +1,13 @@
 package tk.developeramit.json_parsing;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
         contactList = new ArrayList<>();
         relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout_home);
 
-        new BackgroundHelperForMainActivity().execute();
+        if (checkConnection()) {
+            new BackgroundHelperForMainActivity().execute();
+        } else
+            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+
     }
 
     /**
@@ -64,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+
             try {
                 HandleJSON handleJSON = new HandleJSON();
 
@@ -109,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("" + this.getClass().getName(), "" + e);
                 Toast.makeText(MainActivity.this, "Some Problem in HandleJSON", Toast.LENGTH_SHORT).show();
             }
+
             return null;
         }
 
@@ -147,5 +156,25 @@ public class MainActivity extends AppCompatActivity {
             break;
         }
         return true;
+    }
+
+    /**
+     * Check Network Connection
+     *
+     * @return boolean
+     */
+    public boolean checkConnection() {
+        boolean wifi = false, mobile = false;
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
+
+        for (NetworkInfo ni : networkInfos) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI") && ni.isConnected())
+                wifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE") && ni.isConnected())
+                mobile = true;
+        }
+        return (wifi || mobile);
     }
 }
