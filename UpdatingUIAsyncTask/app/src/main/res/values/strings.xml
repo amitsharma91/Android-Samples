@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">UpdatingUIAsyncTask</string>
+    <string name="status">Status: </string>
+    <string name="startTask">Start AsyncTask</string>
+    <string name="clearStatus">Clear Status</string>
+    <string name="stoptask">Stop AsyncTask</string>
+</resources>
